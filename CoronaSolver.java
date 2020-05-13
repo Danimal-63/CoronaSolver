@@ -21,17 +21,43 @@ public class CoronaSolver {
 				n=list.get(0);
 			}else if (i==1){
 				f=list.get(1);
-			}else if (i%2==0)
+			}else if (i%2==0){
 				newYorkList.add(list.get(i));
-		}else
+		}else{
 			losAngelesList.add(list.get(i));
 	}
-	}
-	private int solveHelper (int num, int day, boolean flight) {
-		if(flight) {
-		num+= list.get(day+2) + list.get(1);
-		} else {
-			num+= list.get(day+2);
+}
+int startNewYork = solveHelper(1, "New York");
+int startLosAngeles = solveHelper(1, "Los Angeles");
+if (startNewYork<startLosAngeles){
+	return startNewYork+"";
+}else{
+	return startNewYork+"";
+}
+}
+	//depth shows how deep into the tree
+	public int solveHelper(int depth, String city){
+		//base case where the depth of the tree is equal to the number of days
+		//if the base case is met, return the value at that point
+		if (depth==n){
+			if (city=="New York"){
+			return newYorkList.get(depth);
+		}else{
+			return losAngelesList.get(depth)
 		}
+	}else{
+		//calculate the value of infection for the next day, if in one city, the other city will have f added onto it
+		int newYork=solveHelper(depth+1, "New York");
+		int losAngeles=solveHelper(depth+1, "Los Angeles");
+		if (city=="New York"){
+			losAngeles+=f;
+		}
+		if (city=="Los Angeles"){
+			newYork+=f;
+		}
+		if (newYork<losAngeles){
+			return newYork;
+		}else
+		return losAngeles;
 	}
 }
