@@ -65,9 +65,13 @@ public class CoronaSolver {
 			int losAngeles=solveHelper(depth+1, "Los Angeles");
 			if (city=="New York"){
 				losAngeles+=f;
-			}
+				losAngeles+=Integer.parseInt((String) newYorkList.get(depth-1));
+				newYork+=Integer.parseInt((String) newYorkList.get(depth-1));
+				}
 			if (city=="Los Angeles"){
 				newYork+=f;
+				losAngeles+=Integer.parseInt((String) losAngelesList.get(depth-1));
+				newYork+=Integer.parseInt((String) losAngelesList.get(depth-1));
 			}
 			if (newYork<losAngeles){
 				return newYork;
